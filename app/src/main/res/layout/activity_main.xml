@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ivandgetic.talk.MainActivity$PlaceholderFragment">
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentTop="true"
+        android:divider="#ffffff" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:minHeight="48.0dip"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/compose_edit"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.0"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/composer_hint_new_thread"
+            android:imeOptions="actionDone|flagNoFullscreen"
+            android:inputType="textCapSentences|textAutoCorrect|textMultiLine|textImeMultiLine"
+            android:maxLength="5000"
+            android:maxLines="3"
+            android:paddingBottom="3.0dip"
+            android:paddingLeft="7.0dip"
+            android:paddingTop="3.0dip"
+            android:singleLine="false"
+            android:textColor="@color/chat_thread_composer_text_color"
+            android:textColorHint="@color/chat_thread_composer_text_hint_color"
+            android:textSize="@dimen/chat_thread_compose_text" />
+
+        <ImageView
+            android:id="@+id/compose_button_send"
+            android:layout_width="48.0dip"
+            android:layout_height="48.0dip"
+            android:layout_gravity="center"
+            android:onClick="send"
+            android:scaleType="center"
+            android:src="@drawable/orca_composer_send" />
+    </LinearLayout>
+</RelativeLayout>
