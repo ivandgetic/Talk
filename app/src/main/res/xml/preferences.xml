@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditTextPreference
+        android:defaultValue="192.168.137.1"
+        android:key="server_address"
+        android:title="@string/server_address" />
+    <EditTextPreference
+        android:key="username"
+        android:title="@string/username" />
+</PreferenceScreen>

@@ -11,4 +11,5 @@
     <string name="back_again">Press the back key again to exit the program</string>
     <string name="server_shutdown">The Talk Service is shutdown</string>
     <string name="no_connected">No connected</string>
+    <string name="server_address">Server Address</string>
 </resources>

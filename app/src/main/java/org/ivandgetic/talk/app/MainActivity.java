@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,8 +29,7 @@ public class MainActivity extends Activity {
     static ListView listView;
     private long lastClickTime = 0;
     public static MessageAdapter messageAdapter;
-    public static SharedPreferences sp;
-
+    SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +38,8 @@ public class MainActivity extends Activity {
         listView = (ListView) findViewById(R.id.listView);
         compose_button_send = (ImageView) findViewById(R.id.compose_button_send);
         messageAdapter = new MessageAdapter(this);
-        sp = getSharedPreferences("Information", MODE_PRIVATE);
-        if (!(sp.getString("name", "").length() > 0)) {
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!(preferences.getString("username", "").length() > 0)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Sign in");
             LayoutInflater inflater = this.getLayoutInflater();
@@ -49,20 +49,23 @@ public class MainActivity extends Activity {
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    SharedPreferences.Editor e = sp.edit();
+                    SharedPreferences.Editor e = preferences.edit();
                     String name = ((EditText) layout.findViewById(R.id.username)).getText().toString();
-                    e.putString("name", name);
+                    e.putString("username", name);
                     e.commit();
-                    USERNAME = sp.getString("name", "");
+                    USERNAME = preferences.getString("username", "");
                     startService(new Intent(MainActivity.this, MyService.class));
 
                 }
             });
             builder.show();
         } else {
-            USERNAME = sp.getString("name", "");
+            USERNAME = preferences.getString("username", "");
             startService(new Intent(MainActivity.this, MyService.class));
         }
+    }
+
+    public void start(){
     }
 
 
@@ -70,7 +73,7 @@ public class MainActivity extends Activity {
         message = compose_edit.getText().toString();
         try {
             out = new DataOutputStream(MyService.socket.getOutputStream());
-            out.writeUTF(USERNAME + ":" + message);
+            out.writeUTF("Message:" + USERNAME + ":" + message);
             MessageAdapter.messages.add(new Message(USERNAME, message));
             listView.setAdapter(messageAdapter);
             listView.setSelection(messageAdapter.getCount());
@@ -97,6 +100,7 @@ public class MainActivity extends Activity {
                 listView.setAdapter(messageAdapter);
                 break;
             case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
             case R.id.action_exit:
                 System.exit(0);
