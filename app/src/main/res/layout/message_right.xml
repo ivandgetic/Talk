@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:baselineAligned="false"
     android:gravity="right">
 
     <TextView
@@ -8,8 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/msg_bubble_right"
-        android:gravity="center"
+        android:gravity="center_vertical"
+        android:minHeight="102.0px"
+        android:orientation="vertical"
         android:paddingLeft="10dp"
         android:paddingRight="20dp"
-        android:textColor="#000" />
+        android:textColor="#000"
+        android:textSize="16.0sp" />
 </LinearLayout>

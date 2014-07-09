@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -16,7 +17,9 @@ public class MyService extends Service {
     public static String SOCKET_ADDRESS = "192.168.137.1";
     public static Socket socket;
     DataInputStream in;
+    DataOutputStream out;
     SharedPreferences sharedPreferences;
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -25,13 +28,15 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SOCKET_ADDRESS=sharedPreferences.getString("server_address","");
+        SOCKET_ADDRESS = sharedPreferences.getString("server_address", "");
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     socket = new Socket(SOCKET_ADDRESS, SOCKET_PORT);
                     in = new DataInputStream(socket.getInputStream());
+                    out = new DataOutputStream(MyService.socket.getOutputStream());
+                    out.writeUTF("Operate:GetAllMessage");
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -41,11 +46,15 @@ public class MyService extends Service {
                                     MainActivity.listView.post(new Runnable() {
                                         @Override
                                         public void run() {
-                                            String[] separate = line.split(":", 2);
-                                            String name = separate[0];
-                                            String message = separate[1];
-                                            if (!name.equals(MainActivity.USERNAME)) {
-                                                MessageAdapter.messages.add(new Message(name, message));
+                                            String[] separate = line.split(":", 3);
+                                            if (separate[0].equals("Message")) {
+                                                if (!separate[1].equals(MainActivity.USERNAME)) {
+                                                    MessageAdapter.messages.add(new Message(separate[1], separate[2]));
+                                                    MainActivity.listView.setAdapter(MainActivity.messageAdapter);
+                                                    MainActivity.listView.setSelection(MainActivity.messageAdapter.getCount());
+                                                }
+                                            } else if (separate[0].equals("Operate")) {
+                                                MessageAdapter.messages.add(new Message(separate[1], separate[2]));
                                                 MainActivity.listView.setAdapter(MainActivity.messageAdapter);
                                                 MainActivity.listView.setSelection(MainActivity.messageAdapter.getCount());
                                             }
