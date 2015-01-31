@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/ivandgetic/AndroidStudioProjects/Talk-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/libs/internal_impl-21.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0">
+        <dex dex="/Users/ivandgetic/AndroidStudioProjects/Talk-Android/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.0-6cff943daf3c7f6a8986237afbd46151aab2516b.jar" />
+    </item>
+    <item
+        jar="/Users/ivandgetic/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
+        <dex dex="/Users/ivandgetic/AndroidStudioProjects/Talk-Android/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.0-c1975417e786ef7928e62c30ff823fc9be892c00.jar" />
+    </item>
+    <item
+        jar="/Users/ivandgetic/AndroidStudioProjects/Talk-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="686344a780033e4ba22b926cd225f8d4941247e6">
+        <dex dex="/Users/ivandgetic/AndroidStudioProjects/Talk-Android/app/build/intermediates/pre-dexed/debug/classes-f29fc1ea0996590c23819dd7a4d48026df9ca2fb.jar" />
+    </item>
+    <item
+        jar="/Users/ivandgetic/AndroidStudioProjects/Talk-Android/app/build/intermediates/exploded-aar/com.github.ksoichiro/android-observablescrollview/1.5.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="010ee9e87a286afcaeaed368dcf829e42d0aa2a0">
+        <dex dex="/Users/ivandgetic/AndroidStudioProjects/Talk-Android/app/build/intermediates/pre-dexed/debug/classes-fc0b7ec481cd9c30aecf327b4bee1cd9e79a235f.jar" />
+    </item>
+    <item
+        jar="/Users/ivandgetic/AndroidStudioProjects/Talk-Android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="efeda77c808750cb670ee9c48d8a1835d89dbcb2">
+        <dex dex="/Users/ivandgetic/AndroidStudioProjects/Talk-Android/app/build/intermediates/pre-dexed/debug/classes-1f55276dccf6d14cc3dee6beed0623ce37b98246.jar" />
+    </item>
+
+</items>

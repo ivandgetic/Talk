@@ -18,7 +18,7 @@ public class SettingsActivity extends Activity {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                 if (key.equals("server_address")) {
                     stopService(new Intent(SettingsActivity.this, MyService.class));
-                    MyService.SOCKET_ADDRESS=preferences.getString("server_address","");
+                    MyService.SOCKET_ADDRESS=preferences.getString("server_address","192.168.1.210");
                     startService(new Intent(SettingsActivity.this, MyService.class));
                 }
             }

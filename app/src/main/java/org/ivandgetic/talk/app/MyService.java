@@ -14,7 +14,7 @@ import java.net.Socket;
 
 public class MyService extends Service {
     private static final int SOCKET_PORT = 50000;
-    public static String SOCKET_ADDRESS = "192.168.137.1";
+    public static String SOCKET_ADDRESS=null;
     public static Socket socket;
     DataInputStream in;
     DataOutputStream out;
@@ -43,20 +43,20 @@ public class MyService extends Service {
                             try {
                                 while (true) {
                                     final String line = in.readUTF();
-                                    MainActivity.listView.post(new Runnable() {
+                                    MainActivity.observableListView.post(new Runnable() {
                                         @Override
                                         public void run() {
                                             String[] separate = line.split(":", 3);
                                             if (separate[0].equals("Message")) {
                                                 if (!separate[1].equals(MainActivity.USERNAME)) {
                                                     MessageAdapter.messages.add(new Message(separate[1], separate[2]));
-                                                    MainActivity.listView.setAdapter(MainActivity.messageAdapter);
-                                                    MainActivity.listView.setSelection(MainActivity.messageAdapter.getCount());
+                                                    MainActivity.messageAdapter.notifyDataSetChanged();
+                                                    MainActivity.observableListView.setSelection(MainActivity.messageAdapter.getCount());
                                                 }
-                                            } else if (separate[0].equals("Operate")) {
+                                            }else if (separate[0].equals("Operate")) {
                                                 MessageAdapter.messages.add(new Message(separate[1], separate[2]));
-                                                MainActivity.listView.setAdapter(MainActivity.messageAdapter);
-                                                MainActivity.listView.setSelection(MainActivity.messageAdapter.getCount());
+                                                MainActivity.messageAdapter.notifyDataSetChanged();
+                                                MainActivity.observableListView.setSelection(MainActivity.messageAdapter.getCount());
                                             }
                                         }
                                     });

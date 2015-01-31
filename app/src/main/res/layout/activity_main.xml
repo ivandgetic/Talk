@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="ivandgetic.talk.MainActivity$PlaceholderFragment">
 
-    <ListView
+    <com.github.ksoichiro.android.observablescrollview.ObservableListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
